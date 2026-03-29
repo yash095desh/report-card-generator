@@ -5,6 +5,7 @@ export const schoolConfig: SchoolConfig = {
   schoolAddress: "CS Azad Nagar",
   district: "ALIRAJPUR (M.P.)",
   board: "MPBSE",
+  email: "schoolpragyapublic222@gmail.com",
   diseCode: "23490705330",
   schoolCode: "582023",
   academicYear: "2025-26",

@@ -93,6 +93,7 @@ export interface Student {
 }
 
 export interface SchoolConfig {
+  email: string;
   schoolName: string;
   schoolAddress: string;
   district: string;
