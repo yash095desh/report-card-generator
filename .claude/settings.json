@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(npx shadcn@latest add button input label select card -y)",
+      "Bash(npm run:*)",
+      "Read(//c/Users/yashd/AppData/Local/Temp/claude/c--Users-yashd-Desktop-student-result/f1d20ec9-3175-4f03-bf85-bba6640bd238/tasks/**)",
+      "WebSearch",
+      "Bash(gh auth:*)"
+    ]
+  }
+}
