@@ -1,4 +1,10 @@
-import { SchoolConfig, Grade, Division } from "@/types";
+import { SchoolConfig, Grade, Division, SubjectConfig } from "@/types";
+
+export const mathSpecialSubject: SubjectConfig = {
+  code: "100",
+  name: "MATHS (SPECIAL)",
+  nameHindi: "गणित (विशेष)",
+};
 
 export const schoolConfig: SchoolConfig = {
   schoolName: "PRAGYA PUBLIC SCHOOL",

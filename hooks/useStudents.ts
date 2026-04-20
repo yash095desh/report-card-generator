@@ -29,6 +29,7 @@ export function createEmptyStudent(): Student {
     samagraId: "",
     aadhaarNumber: "",
     medium: "Hindi" as Medium,
+    mathVariant: "basic",
     photo: "",
     attendancePresent: "",
     attendanceTotal: "",

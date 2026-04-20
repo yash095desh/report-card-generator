@@ -1,7 +1,7 @@
 "use client";
 
 import { Student } from "@/types";
-import { schoolConfig } from "@/config/schoolConfig";
+import { schoolConfig, mathSpecialSubject } from "@/config/schoolConfig";
 import {
   calculateStudentResult,
   calculateSubjectRow,
@@ -37,8 +37,12 @@ export function ResultCard({ student }: ResultCardProps) {
   const medium = student.medium;
   const isHindi = medium === "Hindi";
 
-  const subjectRows = schoolConfig.subjects.map((subject) => {
-    const marks = student.marks[subject.code] || {
+  const subjectRows = schoolConfig.subjects.map((configSubject) => {
+    const subject =
+      configSubject.code === "101" && student.mathVariant === "special"
+        ? mathSpecialSubject
+        : configSubject;
+    const marks = student.marks[configSubject.code] || {
       monthlyTest: "",
       halfYearly: "",
       annualWritten: "",
@@ -46,7 +50,7 @@ export function ResultCard({ student }: ResultCardProps) {
     };
     const calc = calculateSubjectRow(marks);
     const subjectRemarkOverride =
-      student.overrides.subjectRemarks?.[subject.code];
+      student.overrides.subjectRemarks?.[configSubject.code];
     const isDistn = calc.grandTotal >= 75;
     return {
       subject,

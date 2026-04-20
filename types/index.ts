@@ -1,5 +1,7 @@
 export type Medium = "Hindi" | "English";
 
+export type MathVariant = "basic" | "special";
+
 export type Category =
   | "General"
   | "OBC"
@@ -67,6 +69,7 @@ export interface Student {
   samagraId: string;
   aadhaarNumber: string;
   medium: Medium;
+  mathVariant: MathVariant;
   photo: string;                  // base64 or empty
   attendancePresent: number | "";
   attendanceTotal: number | "";

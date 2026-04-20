@@ -1,7 +1,7 @@
 "use client";
 
 import { Student, SubjectMarks } from "@/types";
-import { schoolConfig } from "@/config/schoolConfig";
+import { schoolConfig, mathSpecialSubject } from "@/config/schoolConfig";
 import { calculateSubjectRow } from "@/lib/calculations";
 
 interface MarksTableProps {
@@ -62,8 +62,12 @@ export function MarksTable({ student, onChange }: MarksTableProps) {
           </tr>
         </thead>
         <tbody>
-          {schoolConfig.subjects.map((subject) => {
-            const marks = student.marks[subject.code] || {
+          {schoolConfig.subjects.map((configSubject) => {
+            const displaySubject =
+              configSubject.code === "101" && student.mathVariant === "special"
+                ? mathSpecialSubject
+                : configSubject;
+            const marks = student.marks[configSubject.code] || {
               monthlyTest: "",
               halfYearly: "",
               annualWritten: "",
@@ -72,9 +76,9 @@ export function MarksTable({ student, onChange }: MarksTableProps) {
             const calc = calculateSubjectRow(marks);
 
             return (
-              <tr key={subject.code} className="hover:bg-muted/20">
+              <tr key={configSubject.code} className="hover:bg-muted/20">
                 <td className="border p-1.5 text-xs font-medium">
-                  ({subject.code}) {subject.name}
+                  ({displaySubject.code}) {displaySubject.name}
                 </td>
                 {/* Annual Theory /75 */}
                 <td className="border p-0.5">
@@ -84,7 +88,7 @@ export function MarksTable({ student, onChange }: MarksTableProps) {
                     max={75}
                     value={marks.annualWritten}
                     onChange={(e) =>
-                      handleMarkChange(subject.code, "annualWritten", e.target.value)
+                      handleMarkChange(configSubject.code, "annualWritten", e.target.value)
                     }
                     className="w-12 h-7 text-center text-xs border rounded px-1 bg-transparent focus:outline-none focus:ring-1 focus:ring-ring"
                     placeholder="0"
@@ -98,7 +102,7 @@ export function MarksTable({ student, onChange }: MarksTableProps) {
                     max={25}
                     value={marks.projectWork}
                     onChange={(e) =>
-                      handleMarkChange(subject.code, "projectWork", e.target.value)
+                      handleMarkChange(configSubject.code, "projectWork", e.target.value)
                     }
                     className="w-12 h-7 text-center text-xs border rounded px-1 bg-transparent focus:outline-none focus:ring-1 focus:ring-ring"
                     placeholder="0"
@@ -112,7 +116,7 @@ export function MarksTable({ student, onChange }: MarksTableProps) {
                     max={75}
                     value={marks.monthlyTest}
                     onChange={(e) =>
-                      handleMarkChange(subject.code, "monthlyTest", e.target.value)
+                      handleMarkChange(configSubject.code, "monthlyTest", e.target.value)
                     }
                     className="w-12 h-7 text-center text-xs border rounded px-1 bg-transparent focus:outline-none focus:ring-1 focus:ring-ring"
                     placeholder="0"
@@ -126,7 +130,7 @@ export function MarksTable({ student, onChange }: MarksTableProps) {
                     max={75}
                     value={marks.halfYearly}
                     onChange={(e) =>
-                      handleMarkChange(subject.code, "halfYearly", e.target.value)
+                      handleMarkChange(configSubject.code, "halfYearly", e.target.value)
                     }
                     className="w-12 h-7 text-center text-xs border rounded px-1 bg-transparent focus:outline-none focus:ring-1 focus:ring-ring"
                     placeholder="0"

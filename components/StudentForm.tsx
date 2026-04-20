@@ -1,6 +1,6 @@
 "use client";
 
-import { Student, Category, Medium, Grade, Division } from "@/types";
+import { Student, Category, Medium, MathVariant, Grade, Division } from "@/types";
 import { calculateStudentResult } from "@/lib/calculations";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -180,6 +180,20 @@ export function StudentForm({
                     {m}
                   </SelectItem>
                 ))}
+              </SelectContent>
+            </Select>
+          </FormField>
+          <FormField label="Maths Paper">
+            <Select
+              value={student.mathVariant}
+              onValueChange={(v) => updateField("mathVariant", v as MathVariant)}
+            >
+              <SelectTrigger className="w-full">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="basic">Basic (101)</SelectItem>
+                <SelectItem value="special">Special (100)</SelectItem>
               </SelectContent>
             </Select>
           </FormField>
