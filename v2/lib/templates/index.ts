@@ -32,9 +32,6 @@ export function nextClass(cls: ClassKey): string {
   return ordinal(CLASS_ORDER[i + 1]);
 }
 
-/** True when this class's subject list is still a placeholder until the school confirms it. */
-export const isSampleClass = (t: Template, cls: ClassKey) => !t.confirmed.includes(cls);
-
 /** Returns a list of problems; an empty list means the template is valid for every class it covers. */
 export function validateTemplate(t: Template): string[] {
   const errors: string[] = [];
@@ -50,9 +47,6 @@ export function validateTemplate(t: Template): string[] {
   if (t.rule === "board75") {
     const keys = t.columns.map((c) => c.key).sort().join(",");
     if (keys !== "aw,hy,pw,q") errors.push(`${t.id}: board75 needs columns aw, pw, q, hy`);
-  }
-  for (const c of t.confirmed) {
-    if (!t.classes.includes(c)) errors.push(`${t.id}: confirms class ${c} it doesn't cover`);
   }
   for (const cls of t.classes) {
     const subjects = t.subjects(cls);

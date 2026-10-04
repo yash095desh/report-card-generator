@@ -3,7 +3,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { isDirty, useMarksheet } from "@/hooks/useMarksheet";
-import { CLASS_ORDER, TEMPLATES, className, isSampleClass } from "@/lib/templates";
+import { CLASS_ORDER, TEMPLATES, className } from "@/lib/templates";
 import { buildChecklist, type Issue } from "@/lib/rules/checklist";
 import type { ClassKey } from "@/lib/types";
 import { SCHOOL } from "@/lib/school";
@@ -13,7 +13,7 @@ import { Popover } from "@/components/form/Popover";
 import { ResultStrip } from "@/components/form/ResultStrip";
 import { SpecialCases } from "@/components/form/SpecialCases";
 import { MarksSection } from "@/components/form/MarksSection";
-import { SampleNotice, SessionSection, StudentSection } from "@/components/form/DetailsSections";
+import { SessionSection, StudentSection } from "@/components/form/DetailsSections";
 
 type Pop =
   | { kind: "clear"; anchor: HTMLElement }
@@ -128,7 +128,6 @@ export default function Home() {
 
         <aside className="formcol">
           <div className="formscroll">
-            {isSampleClass(t, state.cls) && <SampleNotice t={t} name={className(state.cls)} />}
             <SessionSection api={api} />
             <StudentSection api={api} />
             <MarksSection api={api} />

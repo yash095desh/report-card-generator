@@ -130,7 +130,6 @@ details.special .gsub{margin-top:4px}
 .strip .res.none{background:#eceef2;color:var(--ink-3)}
 
 /* ---------- Desk & paper ---------- */
-.desk-tag{align-self:center;margin-bottom:14px;display:inline-flex;gap:8px;align-items:center;padding:6px 12px;border-radius:999px;background:var(--warn-tint);color:var(--warn);font-size:12.5px;font-weight:600;box-shadow:0 1px 2px rgba(21,26,45,.08)}
 .sheet-warn{align-self:center;margin-bottom:14px;display:flex;gap:8px;align-items:center;padding:8px 14px;border-radius:8px;background:var(--err);color:#fff;font-size:13px;font-weight:600}
 .paper-wrap{flex:none;position:relative}
 .desk .paper{transform-origin:top left;position:absolute;top:0;left:0}
@@ -163,7 +162,7 @@ details.special .gsub{margin-top:4px}
 
 /* Print: only the sheet */
 @media print{
-  .topbar,.formcol,.desk-tag,.sheet-warn,.pop,.phone-guard{display:none !important}
+  .topbar,.formcol,.sheet-warn,.pop,.phone-guard{display:none !important}
   .app{display:block;height:auto}
   .desk{display:block;padding:0;background:#fff !important;overflow:visible}
   .paper-wrap{width:auto !important;height:auto !important}

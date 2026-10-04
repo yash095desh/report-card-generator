@@ -12,7 +12,6 @@ export const secondary: Template = {
   label: "Secondary",
   range: "9–10",
   classes: ["9", "10"],
-  confirmed: ["9", "10"],
   rule: "board75",
   columns: [
     { key: "aw", label: "Annual theory", hi: "वार्षिक सैद्धांतिक", max: 75 },

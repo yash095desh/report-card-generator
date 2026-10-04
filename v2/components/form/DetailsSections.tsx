@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element -- local photo preview from a data URL */
 
 import { useId } from "react";
-import type { Session, Student, Template } from "@/lib/types";
+import type { Session, Student } from "@/lib/types";
 import { MONTHS } from "@/lib/rules/words";
 import type { MarksheetApi } from "@/hooks/useMarksheet";
 import { Icon } from "@/components/Icon";
@@ -129,17 +129,6 @@ function Photo({ photo, set }: { photo: string; set: (v: string) => void }) {
             e.target.value = ""; // lets the same photo be chosen again after Remove
           }}
         />
-      </div>
-    </div>
-  );
-}
-
-export function SampleNotice({ t, name }: { t: Template; name: string }) {
-  return (
-    <div className="notice">
-      <Icon name="alert" />
-      <div>
-        <b>Sample subjects.</b> The marks rule for {t.range} comes from the school&apos;s current marksheets, but the subject list for {name} is a placeholder until the school confirms it.
       </div>
     </div>
   );

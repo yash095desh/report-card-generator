@@ -1,5 +1,4 @@
 import type { ClassKey, Session, Student, Template } from "@/lib/types";
-import { className, isSampleClass } from "@/lib/templates";
 import { CO_SCHOLASTIC, SOCIAL_QUALITIES } from "@/lib/templates/school-exams";
 import { titleCase } from "@/lib/text";
 import type { Result } from "./marks";
@@ -40,9 +39,6 @@ export function buildChecklist(args: {
     if (n) issues.push({ level: "warn", message: `${n} co-scholastic ${n === 1 ? "grade is" : "grades are"} not chosen.` });
   }
   if (!session.teacher.trim()) issues.push({ level: "warn", message: "Class teacher's name is empty." });
-  if (isSampleClass(t, cls)) {
-    issues.push({ level: "warn", message: `${className(cls)} uses a sample subject list. The sheet will print with a "sample" line until the school confirms it.` });
-  }
   return issues;
 }
 

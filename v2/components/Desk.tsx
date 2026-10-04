@@ -2,13 +2,12 @@
 
 import { useEffect, useLayoutEffect, useRef } from "react";
 import type { MarksheetApi } from "@/hooks/useMarksheet";
-import { isSampleClass } from "@/lib/templates";
 import { Marksheet } from "@/components/sheet/Marksheet";
 import { Icon } from "@/components/Icon";
 
-/** The grey desk with the A4 sheet scaled to fit its width, plus the sample tag and over-max warning. */
+/** The grey desk with the A4 sheet scaled to fit its width, plus the over-max warning. */
 export function Desk({ api, onOverflowChange }: { api: MarksheetApi; onOverflowChange: (overflow: boolean) => void }) {
-  const { state, template: t, result, columns } = api;
+  const { state, result, columns } = api;
   const deskRef = useRef<HTMLElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const paperRef = useRef<HTMLDivElement>(null);
@@ -48,12 +47,6 @@ export function Desk({ api, onOverflowChange }: { api: MarksheetApi; onOverflowC
 
   return (
     <main className="desk" ref={deskRef}>
-      {isSampleClass(t, state.cls) && (
-        <div className="desk-tag">
-          <Icon name="alert" />
-          Sample subject list · to confirm with school
-        </div>
-      )}
       {result.anyInvalid && (
         <div className="sheet-warn">
           <Icon name="alert" />

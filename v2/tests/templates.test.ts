@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { CLASS_ORDER, TEMPLATES, className, classLabel, isSampleClass, templateFor, validateTemplate } from "@/lib/templates";
+import { CLASS_ORDER, TEMPLATES, className, classLabel, templateFor, validateTemplate } from "@/lib/templates";
 import { buildChecklist } from "@/lib/rules/checklist";
 import { calcResult, visibleColumns } from "@/lib/rules/marks";
 import type { Session, Student } from "@/lib/types";
@@ -26,11 +26,6 @@ describe("templates", () => {
     expect(templateFor("9").subjects("9").map((s) => s.code)).toEqual(["401", "411", "512", "100", "200", "300"]);
     expect(templateFor("N").gradeRows("N").map((g) => g.en)).toEqual(["DRAWING / PAINTING"]);
     expect(templateFor("6").gradeRows("6")).toEqual([]);
-  });
-
-  test("only Nursery, 1, 6 and 9–10 are confirmed; the rest print a sample line", () => {
-    const sample = CLASS_ORDER.filter((c) => isSampleClass(templateFor(c), c));
-    expect(sample).toEqual(["LKG", "UKG", "2", "3", "4", "5", "7", "8"]);
   });
 
   test("class names and labels", () => {
@@ -64,6 +59,6 @@ describe("before-you-print checklist", () => {
     expect(text).toContain("English: Monthly is above the maximum of 40.");
     expect(text).toContain("Student's name is empty.");
     expect(text).toContain("15 co-scholastic grades are not chosen.");
-    expect(text).toContain("Class 7 uses a sample subject list");
+    expect(text).not.toContain("sample");
   });
 });

@@ -37,7 +37,6 @@ export const schoolExams: Template = {
   label: "Nursery – Class 8",
   range: "Nursery–8",
   classes: ["N", "LKG", "UKG", "1", "2", "3", "4", "5", "6", "7", "8"],
-  confirmed: ["N", "1", "6"],
   rule: "school",
   columns: [
     { key: "mo", label: "Monthly", hi: "मासिक", max: 40, weight: 10 },

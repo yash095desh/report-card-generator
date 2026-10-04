@@ -6,7 +6,7 @@ import type { Result } from "@/lib/rules/marks";
 import { formatPct } from "@/lib/rules/marks";
 import { GRADES } from "@/lib/rules/grades";
 import { dobWords, formatDate } from "@/lib/rules/words";
-import { classLabel, isSampleClass, nextClass, templateFor } from "@/lib/templates";
+import { classLabel, nextClass, templateFor } from "@/lib/templates";
 import { CO_SCHOLASTIC, SOCIAL_QUALITIES } from "@/lib/templates/school-exams";
 import { SCHOOL } from "@/lib/school";
 import { Bi } from "./Bi";
@@ -248,7 +248,6 @@ export function Marksheet({ cls, student: s, session: ss, result, columns, marks
           </div>
         </div>
       </div>
-      {isSampleClass(t, cls) && <p className="sh-sample">SAMPLE SUBJECT LIST – TO BE CONFIRMED WITH SCHOOL</p>}
     </div>
   );
 }

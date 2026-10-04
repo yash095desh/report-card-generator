@@ -44,8 +44,6 @@ export interface Template {
   label: string;
   range: string;
   classes: ClassKey[];
-  /** Classes whose subject list the school has confirmed; the rest print a "sample" line. */
-  confirmed: ClassKey[];
   rule: RuleId;
   columns: Column[];
   /** Teachers may rename/hide columns and change maximum marks (Nursery–8 only). */
