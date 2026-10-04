@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+/* Design tokens: see docs/dev/report-card-v2/DESIGN.md (tool UI) */
+:root {
+  --ink: #151a2d;
+  --ink-2: #454b62;
+  --ink-3: #5f6680;
+  --navy: #1a2a5e;
+  --navy-hover: #22357a;
+  --navy-tint: #e9ecf6;
+  --navy-ring: rgba(26, 42, 94, 0.28);
+  --desk: #d9dde5;
+  --panel: #ffffff;
+  --field: #fcfcfd;
+  --line: #e1e4ea;
+  --line-2: #c5cad5;
+  --ok: #166534;
+  --ok-tint: #e6f2ea;
+  --err: #991b1b;
+  --err-tint: #fbebeb;
+  --warn: #7a4f00;
+  --warn-tint: #fbf1d8;
+  --ui: var(--font-noto-sans), var(--font-noto-devanagari), system-ui, sans-serif;
+  /* Printed sheet: Hind with matching Devanagari */
+  --sheet: var(--font-hind), var(--font-noto-devanagari), Arial, sans-serif;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-navy: var(--navy);
+  --color-desk: var(--desk);
+  --color-panel: var(--panel);
+  --color-line: var(--line);
+  --color-line-2: var(--line-2);
+  --font-ui: var(--ui);
+  --font-sheet: var(--sheet);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--desk);
+  color: var(--ink);
+  font-family: var(--ui);
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  caret-color: var(--navy);
+  accent-color: var(--navy);
+}
+
+::selection {
+  background: var(--navy-tint);
+  color: var(--navy);
+}
+
+@media print {
+  .preview-wrap { padding: 0 !important; display: block !important; }
+}

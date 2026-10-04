@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# playwright test logs
+.playwright-mcp/
+
+# real student marksheets (PDFs) never go into git
+/*.pdf
+# review screenshots can contain real student details
+docs/dev/report-card-v2/.impeccable/review/
+# planning docs, mock and school notes stay local (they reference real students)
+docs/

@@ -1,0 +1,142 @@
+/* Printed marksheet: the school's original sheet (v1 / Class 9 PDF) with the Hind font and spacing upgrade.
+   Ported from docs/dev/report-card-v2/mock/index.html. Keep in step with DESIGN.md "Marksheet". */
+
+.paper {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 6mm 8mm;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(21, 26, 45, 0.1), 0 8px 28px rgba(21, 26, 45, 0.16);
+}
+
+.sheet{position:relative;width:100%;font-family:var(--sheet);font-size:10px;line-height:1.4;color:#111;font-variant-numeric:tabular-nums}
+.sheet table{border-collapse:collapse;width:100%}
+.sh-outer{border:3px solid #1a1a1a;padding:2px}
+.sh-inner{position:relative;border:1.5px solid #1a1a1a;padding:6px}
+.sh-wm{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:50}
+.sh-wm img{width:300px;height:300px;object-fit:contain;opacity:.08}
+.sh-box{position:relative;z-index:10;border:1.5px solid #444;margin-bottom:6px}
+.sh-box:last-child{margin-bottom:0}
+.sh-head{display:flex;align-items:center;padding:12px 16px;border-bottom:2px solid #444;background:#fdf8ef}
+.sh-logo{width:100px;height:100px;flex:none}
+.sh-logo img{width:100%;height:100%;object-fit:contain}
+.sh-title{flex:1;text-align:center}
+.sh-title h1{margin:0;font-size:23px;font-weight:700;letter-spacing:.05em;line-height:1.25;color:#1a2a5e}
+.sh-title .addr{margin:2px 0 0;font-size:10px;font-weight:600;color:#444}
+.sh-title .dist{margin:2px 0 0;font-size:11px;font-weight:700;color:#1a2a5e}
+.sh-div{display:flex;align-items:center;justify-content:center;gap:8px;margin:6px 0}
+.sh-div i{display:block;height:1px;width:64px;background:#1a2a5e}
+.sh-div b{display:block;width:6px;height:6px;border-radius:50%;background:#1a2a5e}
+.sh-title .ms{margin:0;font-size:15px;font-weight:700;line-height:1.25;letter-spacing:.15em;color:#1a2a5e}
+.sh-title .msh{letter-spacing:0;margin-right:10px}
+.sh-codes{width:122px;flex:none;display:flex;flex-direction:column;justify-content:center;gap:4px;font-size:8.5px;padding-left:8px;border-left:1px solid #888}
+.sh-codes span{font-weight:600;color:#666}
+.sh-codes p{margin:0;font-weight:700;color:#111}
+.sh-codes p span{white-space:nowrap;color:#111;font-weight:700}
+.sh-meta{display:flex;font-size:10px;font-weight:700;border-bottom:1.5px solid #444;background:#f0efe8}
+.sh-meta div{flex:1;text-align:center;padding:8px 2px;border-right:1px solid #888}
+.sh-meta div:last-child{border-right:0}
+.sh-ids{font-size:9px;border-bottom:1.5px solid #444}
+.sh-ids th{background:#f0efe8;border-bottom:1px solid #888;border-right:1px solid #888;padding:5px 6px 4px;text-align:center;font-weight:700}
+.sh-ids td{border-right:1px solid #888;padding:5px 6px;text-align:center;font-weight:700}
+.sh-ids th:last-child,.sh-ids td:last-child{border-right:0}
+.sh-info{display:flex}
+.sh-info .who{flex:1;padding:12px 16px;font-size:11px;display:grid;gap:5px}
+.sh-info .who p{margin:0}
+.sh-info .who .l{font-weight:600;color:#444}
+.sh-info .who .v{font-weight:700;margin-left:8px;color:#111}
+.sh-info .ph{width:90px;flex:none;display:flex;align-items:center;justify-content:center;padding:8px;border-left:1.5px solid #444}
+.sh-info .ph div,.sh-info .ph img{width:74px;height:90px;border:1px solid #999;background:#fff;object-fit:cover;border-radius:1px}
+.sh-perf{font-size:8.5px}
+.sh-perf th,.sh-perf td{border:1px solid #444;padding:5px 6px;text-align:center}
+.sh-perf th{font-weight:700;background:#f0efe8}
+.sh-perf th.cr{background:#fdf8ef}
+.sh-perf .ttl{padding:8px 0;font-weight:700;font-size:12px;letter-spacing:.08em;color:#1a2a5e;border-bottom:1.5px solid #444;border-top:0;border-left:0;border-right:0}
+.sh-perf .tiny{font-size:7px;line-height:1.2}
+.sh-perf .tinier{font-size:6.5px;line-height:1.2}
+.sh-perf td.sub{text-align:left;font-weight:600;font-size:9.5px;padding:6px 8px}
+.sh-perf td.b{font-weight:700}
+.sh-perf tbody tr:nth-child(even){background:#fafaf6}
+.sh-perf tr.total{background:#f0efe8 !important;font-weight:700}
+.sh-perf td.gt{font-size:10px;font-weight:700}
+.sh-perf td.rm{font-weight:600;font-size:8.5px}
+.sh-perf td.rm.d{color:#1a2a5e}
+.sh-perf td.ab{color:#991b1b;font-weight:700}
+.sh-perf td.bad{color:#991b1b;font-weight:700}
+.sh-res{font-size:8.5px}
+.sh-res th,.sh-res td{border:1px solid #444;padding:5px 6px;text-align:center}
+.sh-res th{background:#f0efe8;font-weight:700;border-top:0}
+.sh-res td{font-weight:700}
+.sh-res tr>*:first-child{border-left:0}
+.sh-res .env{background:#fdf8ef;width:120px;border-right:0;padding:6px 8px;vertical-align:middle}
+.sh-res .env span{display:block;font-size:7.5px;font-weight:700;line-height:1.2;color:#1a2a5e}
+.sh-res .env strong{display:block;font-size:20px;font-weight:700;margin-top:4px;color:#1a2a5e}
+.sh-res .envlist{background:#fdf8ef;width:150px;border-right:0;padding:4px 8px;vertical-align:middle;text-align:left}
+.sh-res .envlist div{display:flex;justify-content:space-between;gap:6px;font-size:7.5px;font-weight:700;color:#1a2a5e;line-height:1.5}
+.sh-res .envlist div b{font-size:10px;font-weight:700}
+.sh-words{padding:10px 16px;font-size:10.5px;border-top:1.5px solid #444}
+.sh-words .l{font-weight:700;color:#444}
+.sh-words .v{font-weight:700;letter-spacing:.025em}
+.sh-sign{display:flex;justify-content:space-between;padding:48px 24px 16px}
+.sh-sign div{text-align:center}
+.sh-sign i{display:block;width:176px;border-bottom:1.5px solid #333;margin:0 auto 8px}
+.sh-sign p{margin:0;font-weight:700;font-size:9px;color:#444}
+.sh-sign p.n{margin-top:4px;color:#111}
+.sh-sign.three{padding-top:36px}
+.sh-sign.three i{width:150px}
+.sh-scale{font-size:8px}
+.sh-scale td{border:1px solid #444;padding:4px 6px;text-align:center}
+.sh-scale td.h{text-align:left;font-weight:700;padding:6px 8px;width:70px;border-left:0}
+.sh-scale tr:first-child td{border-top:0}
+.sh-scale tr:last-child td{border-bottom:0}
+.sh-scale tr>td:last-child{border-right:0}
+.sh-scale .g{font-weight:700;color:#1a2a5e}
+.sh-scale .ge{font-weight:700;color:#991b1b}
+.sh-scale .hd{background:#f0efe8;font-weight:700}
+.sh-scale .alt{background:#fafaf6}
+.sh-cobox{display:flex;align-items:flex-start}
+.sh-co{font-size:8.5px;width:50% !important}
+.sh-co th,.sh-co td{border:1px solid #444;padding:2px 6px;text-align:left}
+.sh-co th{background:#f0efe8;font-weight:700;border-top:0}
+.sh-co th:last-child,.sh-co td.g{text-align:center;width:44px}
+.sh-co td.g{font-weight:700;color:#1a2a5e}
+.sh-co tbody tr:last-child td{border-bottom:0}
+.sh-cobox .sh-co:first-child th:first-child,.sh-cobox .sh-co:first-child td:first-child{border-left:0}
+.sh-cobox .sh-co:last-child th:last-child,.sh-cobox .sh-co:last-child td:last-child{border-right:0}
+/* Compact spacing: used for Hindi medium (every label gains a Hindi line) and whenever a sheet would
+   otherwise run past one A4 page (e.g. extra subjects). */
+.sheet .hi{line-height:1.15}
+.sheet.compact{line-height:1.3}
+.sheet.compact .sh-head{padding:8px 14px}
+.sheet.compact .sh-logo{width:86px;height:86px}
+.sheet.compact .sh-div{margin:4px 0}
+.sheet.compact .sh-meta div{padding:6px 2px}
+.sheet.compact .sh-ids th{padding:3px 4px}
+.sheet.compact .sh-ids td{padding:4px 6px}
+.sheet.compact .sh-info .who{gap:3px;padding:9px 16px}
+.sheet.compact .sh-perf th{padding:3px 4px}
+.sheet.compact .sh-perf td{padding:4px 5px}
+.sheet.compact .sh-perf .ttl{padding:5px 0}
+.sheet.compact .sh-co th{padding:1px 6px}
+.sheet.compact .sh-co td{padding:1px 6px}
+.sheet.compact .sh-res th{padding:3px 4px}
+.sheet.compact .sh-res td{padding:4px 6px}
+.sheet.compact .sh-words{padding:7px 16px}
+.sheet.compact .sh-sign{padding-top:32px;padding-bottom:12px}
+.sheet.compact .sh-sign.three{padding-top:24px}
+.sheet.compact .sh-scale td{padding:3px 6px}
+.sheet.compact .sh-scale td.h{padding:4px 8px}
+.sh-sample{margin:4px 0;text-align:center;font-size:8px;font-weight:700;letter-spacing:.06em;color:#7a4f00}
+
+@keyframes sheet-pulse{0%{background-color:rgba(26,42,94,.28)}100%{background-color:transparent}}
+.sheet .pulse{animation:sheet-pulse .7s cubic-bezier(.16,1,.3,1)}
+@media (prefers-reduced-motion:reduce){.sheet .pulse{animation:none}}
+
+/* Print: only the sheet, one A4 page */
+@media print {
+  @page { size: A4 portrait; margin: 0; }
+  html, body { height: auto !important; background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .no-print { display: none !important; }
+  .paper { box-shadow: none; min-height: 0; transform: none !important; position: static !important; }
+  .sheet .pulse { animation: none; }
+}
